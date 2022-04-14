@@ -62,7 +62,6 @@ cache
 out
 
 # Echidna
-echidna-init.json
 crytic-export
 
 # Avoid committing potentially differently licensed code..

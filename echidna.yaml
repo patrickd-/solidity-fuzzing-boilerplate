@@ -13,6 +13,6 @@ maxValue: 0
 sender: ["0x10000"]
 
 # The transactions to replay for initialization, contains deployments of contracts with incompatible solidity version
-initialize: echidna-init.json
+initialize: echidna-init.json                                 # Don't disable since otherwise the assuming() helper won't work anymore.
 
 coverage: true                                                # coverage guided testing
