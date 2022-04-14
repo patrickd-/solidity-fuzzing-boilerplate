@@ -1,0 +1,18 @@
+# Turn on if you want to make use of shell commands via Solidity contracts
+allowFFI: true                                                # Enabling HEVM's FFI cheatcode
+
+# Fuzz run options - adjust as needed for your fuzzing campaign
+testLimit: 999999999                                          # Number of test sequences to run
+
+# Fuzzing stateless contracts / libraries
+seqLen: 1                                                     # Increase when fuzzing non-libraries (contracts with state)
+testMode: assertion                                           # Allows fuzzing behavior similar to foundry (no properties but test functions)
+maxTimeDelay: 0
+maxBlockDelay: 0
+maxValue: 0
+sender: ["0x10000"]
+
+# The transactions to replay for initialization, contains deployments of contracts with incompatible solidity version
+initialize: echidna-init.json
+
+coverage: true                                                # coverage guided testing

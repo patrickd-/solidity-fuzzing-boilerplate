@@ -1,0 +1,20 @@
+[default]
+
+# Compiler optimization options to use (use same as project)
+optimizer = true                                              # enable or disable the solc optimizer
+optimizer_runs = 10000                                        # the number of optimizer runs
+
+# Turn on if you want to make use of shell commands via Solidity contracts
+ffi = true                                                    # whether to enable ffi or not
+
+# Fuzz run options - adjust as needed for your fuzzing campaign
+fuzz_runs = 999999999                                         # the number of fuzz runs for tests
+fuzz_max_local_rejects = 999999999                            # max number of individual inputs that may be rejected before the test aborts
+fuzz_max_global_rejects = 999999999                           # max number of combined inputs that may be rejected before the test aborts
+
+# Other
+verbosity = 3                                                 # the verbosity of tests (3 displays traces for failed tests)
+evm_version = 'london'                                        # the evm version (by hardfork name)
+auto_detect_solc = true                                       # enable auto-detection of the appropriate solc version to use
+cache = true                                                  # whether to cache builds or not
+force = false                                                 # whether to ignore the cache (clean build)
