@@ -6,7 +6,7 @@ testLimit: 999999999                                          # Number of test s
 
 # Fuzzing stateless contracts / libraries
 seqLen: 1                                                     # Increase when fuzzing non-libraries (contracts with state)
-testMode: assertion                                           # Allows fuzzing behavior similar to foundry (no properties but test functions)
+testMode: dapptest                                            # Allows fuzzing behavior similar to foundry (no properties but test functions)
 maxTimeDelay: 0
 maxBlockDelay: 0
 maxValue: 0

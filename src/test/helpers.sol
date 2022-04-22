@@ -16,7 +16,7 @@ function assuming(bool condition) {
         CheatCodes(HEVM_ADDRESS).assume(condition);
     }
     // For Echidna in assertion testMode use require() instead.
-    require(condition);
+    require(condition, "FOUNDRY::ASSUME");
 }
 
 function exec(string[] memory args) returns (bytes memory) {
