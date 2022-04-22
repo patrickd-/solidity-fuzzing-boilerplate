@@ -9,13 +9,22 @@ interface CheatCodes {
     function assume(bool) external;
 }
 
-// For skipping invalid fuzzing input.
+/**
+ * Skip invalid fuzzing inputs.
+ *
+ * Both Foundry and Echidna (in dapptest mode) will take revert/assert errors
+ * as test failure. This helper function is for skipping invalid inputs that
+ * shouldn't be misunderstood as a fuzzer-finding.
+ */
 function assuming(bool condition) {
-    // Foundry uses assume cheatcode which is not available in Echidna.
-    if (block.gaslimit > 0) { // Echidna's gaslimit is 0.
+    // Foundry has a special cheatcode for this:
+    if (block.gaslimit > 0) {
+        // This call will cause Echidna to get stuck, so this "gaslimit" check
+        // ensures it's only executed when doing fuzzing within foundry.
+        // NOTE: The gaslimit in Echidna will only be 0 if there's an init file!
         CheatCodes(HEVM_ADDRESS).assume(condition);
     }
-    // For Echidna in assertion testMode use require() instead.
+    // For Echidna in dapptest mode: Use a specific revert reason for skipping.
     require(condition, "FOUNDRY::ASSUME");
 }
 
