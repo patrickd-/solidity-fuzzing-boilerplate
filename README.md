@@ -46,7 +46,7 @@ echidna-test --contract Test --config echidna.yaml src/test/example/BytesLib-FFI
 
 [*The FFI cheatcode is experimental in Echidna and only available when compiling with PR#750](https://github.com/crytic/echidna/pull/750)
 
-## Running Forge Fuzzing
+## Running Foundry Fuzzing
 
 ```bash
 # Simple fuzzing with Foundry:
@@ -58,6 +58,8 @@ forge test --fork-url http://127.0.0.1:8545/ --match-path src/test/example/Bytes
 # Differential fuzzing against an executable via FFI shell command execution:
 forge test --match-path src/test/example/BytesLib-FFI-diff.sol
 ```
+
+Note that forge will appear to be stuck, but it's actually running 999999999 tests as configured in [foundry.toml](foundry.toml). This is intended to be kept running on servers for hours. If you instead want to run quick tests, eg. for CI, adjust the configuration according to your needs.
 
 ## Reproducing a finding / Manual testing
 
