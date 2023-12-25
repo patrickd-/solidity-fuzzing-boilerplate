@@ -26,7 +26,7 @@ Before any fuzzing can be run, `build.sh` needs to be executed, which has the fo
 
 - bash
 - curl
-- [etheno](https://github.com/crytic/etheno)
+- [etheno](https://github.com/crytic/etheno) and [ganache](https://github.com/trufflesuite/ganache)
 - [foundry](https://book.getfoundry.sh/getting-started/installation.html)
 
 After the buildscript was successfully executed, the implementation directory should be populated, there'll be a `echidna-init.json` file and a ganache instance will still be running in the background.
@@ -50,7 +50,7 @@ echidna-test --contract Test --config echidna.yaml src/test/example/BytesLib-FFI
 
 ```bash
 # Simple fuzzing with Foundry:
-forge test --match test_BytesLib_slice
+forge test --match-test test_BytesLib_slice
 
 # Differential fuzzing against another implementation with incompatible Solidity version via ganache fork:
 forge test --fork-url http://127.0.0.1:8545/ --match-path src/test/example/BytesLib-BytesUtil-diff.sol
@@ -65,10 +65,10 @@ Note that forge will appear to be stuck, but it's actually running 999999999 tes
 
 ```bash
 # Call function of exposed library and show execution trace:
-forge run --sig "slice(bytes,uint256,uint256)" --target-contract ExposedBytesLib -vvvv src/expose/example/BytesLib.sol 0x010203 1 1
+forge script --sig "slice(bytes,uint256,uint256)" --target-contract ExposedBytesLib -vvvv src/expose/example/BytesLib.sol 0x010203 1 1
 
 # Manually execute a testcase to reproduce an issue:
-forge run --fork-url http://127.0.0.1:8545/ --sig "test_BytesLib_BytesUtil_diff_slice(bytes,uint256,uint256)" --target-contract Test -vvvv src/test/example/BytesLib-BytesUtil-diff.sol 0x010203 1 1
+forge script --fork-url http://127.0.0.1:8545/ --sig "test_BytesLib_BytesUtil_diff_slice(bytes,uint256,uint256)" --target-contract Test -vvvv src/test/example/BytesLib-BytesUtil-diff.sol 0x010203 1 1
 ```
 
 ##### ✂ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - SNIP - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
