@@ -35,13 +35,13 @@ After the buildscript was successfully executed, the implementation directory sh
 
 ```bash
 # Simple fuzzing with Echidna:
-echidna-test --contract Test --config echidna.yaml src/test/example/BytesLib.sol
+echidna --contract Test --config echidna.yaml src/test/example/BytesLib.sol
 
 # Differential fuzzing against another implementation with incompatible Solidity version via initialization file:
-echidna-test --contract Test --config echidna.yaml src/test/example/BytesLib-BytesUtil-diff.sol
+echidna --contract Test --config echidna.yaml src/test/example/BytesLib-BytesUtil-diff.sol
 
 # Differential fuzzing against an executable via FFI shell command execution:
-echidna-test --contract Test --config echidna.yaml src/test/example/BytesLib-FFI-diff.sol
+echidna --contract Test --config echidna.yaml src/test/example/BytesLib-FFI-diff.sol
 ```
 
 [*The FFI cheatcode is experimental in Echidna and only available when compiling with PR#750](https://github.com/crytic/echidna/pull/750)
